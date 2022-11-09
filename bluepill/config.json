@@ -1,0 +1,7 @@
+{ 
+   "output-dir": "./build/",
+   "device": "iPhone 8 Plus",
+   "runtime": "iOS 16.0",
+   "error-retries": "4",
+   "num-sims": "1"
+}

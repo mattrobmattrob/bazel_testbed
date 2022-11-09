@@ -1,0 +1,24 @@
+test --build_tests_only
+build --apple_platform_type=ios
+build --proto_compiler=@build_bazel_rules_swift//tools/protoc_wrapper:protoc
+build --apple_bitcode=none
+build --xcode_version=14.0.1
+build --spawn_strategy=local
+build --verbose_failures
+build --test_output=errors
+build --strategy=SwiftCompile=worker
+build --incompatible_strict_action_env
+build --features swift.cacheable_swiftmodules
+build --features swift.use_global_module_cache
+build --features apple.virtualize_frameworks
+build --features=swift.generate_path_to_underscores_from_proto_files
+build --features=swift.opt_uses_wmo
+build --swiftcopt=-whole-module-optimization
+build \
+  --modify_execution_info=^(BaselineCoverage|BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppLink|ObjcLink|ProcessAndSign|SwiftArchive)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor|TestRunner|SwiftStdlibCopy)$=+no-remote-exec
+build --incompatible_remote_build_event_upload_respect_no_cache
+build --experimental_build_event_upload_strategy=local
+coverage --test_env="LCOV_MERGER=/usr/bin/true"
+coverage --experimental_use_llvm_covmap
+build -c dbg
+build --features apple.arm64_simulator_use_device_deps

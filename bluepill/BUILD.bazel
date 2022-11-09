@@ -1,0 +1,10 @@
+load("@bptestrunner//:bluepill_batch_test.bzl", "bluepill_batch_test")
+
+# Bluepill - a tool to run iOS tests in parallel using multiple simulators.
+bluepill_batch_test(
+    name = "UI_Tests_Bluepill",
+    test_targets = [
+        "//tests/ios/ui-test:SimpleTest",
+    ],
+    config_file = "config.json",
+)
