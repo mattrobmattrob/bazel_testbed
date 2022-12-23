@@ -1,0 +1,9 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "apple_static_framework_import")
+
+apple_static_framework_import(
+    name = "NestedHeaders",
+    framework_imports = glob(
+        ["ios/NestedHeaders.framework/**/*"],
+        exclude = ["**/.DS_Store"],
+    ),
+)
